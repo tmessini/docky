@@ -14,7 +14,7 @@ docker run -p 8080:8080 tmessinis/dockerized-service
 
 docker ps
 
-docker stop <container_id>
+docker stop containerId
 
 # B.1. DEPENDENCIES INSTALLATION FOR PYTHON TOOL (delivery tool)
 
