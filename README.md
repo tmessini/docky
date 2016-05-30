@@ -30,11 +30,17 @@ python main.py -action stop -name java-webapp-cluster
 python main.py -monitor status -name java-webapp-cluster
 
 # B.2.4. Monitor resource usage of each container (CPU, IO).
+
 python main.py -monitor cpu -name java-webapp-cluster
+
 python main.py -monitor io -name java-webapp-cluster
+
 python main.py -monitor memory -name java-webapp-cluster
+
 python main.py -monitor pid -name java-webapp-cluster
+
 python main.py -monitor network -name java-webapp-cluster
+
 python main.py -monitor precpu -name java-webapp-cluster
 
 # B.2.5. Consolidate the log output of all the containers into a centralized log file.
