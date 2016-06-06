@@ -1,6 +1,7 @@
 from threading import Thread
 from docker import Client
 import localstore
+import connection
 
 
 def threaded_function(logs_steam, logs, container_name):
@@ -10,7 +11,7 @@ def threaded_function(logs_steam, logs, container_name):
 
 def consolidate_logs(cluster_name, logs):
     # Connection to Docker Daemon
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     container_list = localstore.load_object(cluster_name + ".pkl")
     if container_list is not None:
         # Checking all containers logs

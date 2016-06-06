@@ -1,5 +1,6 @@
 import os
 import sys
+import connection
 
 from docker import Client
 
@@ -7,9 +8,8 @@ import localstore
 
 
 def show_containers():
-
     # Connection to Docker Daemon
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     # Showing containers
     containers = c.containers()
     for container in containers:
@@ -17,7 +17,7 @@ def show_containers():
 
 
 def start_cluster(cluster_name, size, image):
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     container_list = []
     # Simple iteration for starting containers
     for i in range(0, size):
@@ -35,7 +35,7 @@ def start_cluster(cluster_name, size, image):
 
 def stop_cluster(cluster_name):
     # Connection to Docker Daemon
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     # Loading containers from localstore
     container_list = localstore.load_object(cluster_name + ".pkl")
     if container_list is not None:

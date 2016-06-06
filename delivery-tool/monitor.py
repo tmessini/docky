@@ -1,9 +1,10 @@
 from docker import Client
 import localstore
+import connection
 
 def validate_containers(cluster_name):
     # Connection to Docker Daemon
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     container_list = localstore.load_object(cluster_name + ".pkl")
     # Initialization
     checker = True
@@ -21,7 +22,7 @@ def validate_containers(cluster_name):
 
 def stats(cluster_name, stats_type):
     # Connection to Docker Daemon
-    c = Client(base_url="unix://var/run/docker.sock")
+    c = connection.get()
     container_list = localstore.load_object(cluster_name + ".pkl")
     containers = c.containers()
     if container_list is not None:
